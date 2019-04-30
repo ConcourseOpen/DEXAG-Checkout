@@ -7,6 +7,9 @@
     padding: 50px;
 	font-family: sans-serif;
 }
+.title{
+	font-weight: 400;
+}
 .status-message h3{
 	font-size: 14px;
     font-weight: 400;
