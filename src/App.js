@@ -23,13 +23,13 @@ class App extends Component {
 	<div className="app">
 		<div className="container">
 			<h3 className="title">Checkout with DEX.AG</h3>
-			<select>
-				<option value="ETH" selected="selected">Ethereum</option>
+			<select defaultValue="ETH">
+				<option value="ETH">Ethereum</option>
 			</select>
-			<select>
-			<option value="ETH" selected="selected">DAI</option>
+			<select value="ETH" defaultValue="DAI">
+			<option>DAI</option>
 				</select>
-			<button onClick="alert()">Buy</button>
+			<button>Buy</button>
 			<div className="status-message">
 				<h3>Waiting to be mined</h3>
 			</div>
