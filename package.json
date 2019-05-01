@@ -1,8 +1,7 @@
 {
-  "name": "demo-ui-js-client",
+  "name": "DEXAG-heckout",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:7000/",
   "dependencies": {
     "cross-env": "^5.2.0",
     "dexag-sdk": "github:SettleFinance/DEXAG-SDK#master",
