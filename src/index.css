@@ -25,13 +25,22 @@ body {
 .status-message h3{
 	font-size: 14px;
     font-weight: 400;
-	display: none;
+    color: rgb(166, 166, 166);
+	margin-bottom: 0;
 }
 .container .price{
     font-weight: 300;
 }
 .container .price strong{
-	margin: 0 10px;
+	margin: 0 7px;
+}
+.container .price-total{
+	margin: 15px 0;
+    font-size: 15px;
+}
+.container .price-total span{
+	text-transform: capitalize;
+	display: inline-block;
 }
 .container button{
 	background: #5cab00;
@@ -75,4 +84,6 @@ body {
 	color: #c7c7c7;
 	margin-top: 10px;
 	display: block;
+	font-size: 13px;
+	font-weight: 300;
 }
