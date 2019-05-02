@@ -2,20 +2,77 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #0e1a21;
 }
 .container{
 	text-align: center;
 	width: fit-content;
     display: block;
-    margin: 50px auto;
-    background: #f7f7f7;
+    margin: 40px auto;
+	background: #283943;
+    color: white;
     padding: 50px;
 	font-family: sans-serif;
+    width: 300px;
 }
 .title{
 	font-weight: 400;
 }
+.title p{
+	display: inline-block;
+	margin: 0 15px;
+}
 .status-message h3{
 	font-size: 14px;
     font-weight: 400;
+	display: none;
+}
+.container .price{
+    font-weight: 300;
+}
+.container .price strong{
+	margin: 0 10px;
+}
+.container button{
+	background: #5cab00;
+	border: none;
+	color: white;
+	padding: 0.5em 2em;
+	font-size: 14px;
+	cursor: pointer;
+}
+.container select{
+	background: transparent;
+    color: white;
+    padding: 5px 10px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+.container .amount{
+	font-size: 14px;
+}
+.container .amount input{
+	background: transparent;
+    border: 1px solid rgb(166, 166, 166);
+    padding: 5px 10px;
+    color: white;
+    width: 135px;
+    margin-top: 20px;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+.info{
+	text-align: center;
+    color: white;
+}
+.info h3{
+    margin-bottom: 0;
+    margin-top: 40px;
+    font-weight: 300;
+}
+.info a{
+	color: #c7c7c7;
+	margin-top: 10px;
+	display: block;
 }
