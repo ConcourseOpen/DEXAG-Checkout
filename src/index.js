@@ -10,6 +10,6 @@ import './index.css';
 ReactDOM.render(
 <div>
     <div>
-      <App />
+    	<App />
     </div>
 </div>, document.getElementById('root'));
