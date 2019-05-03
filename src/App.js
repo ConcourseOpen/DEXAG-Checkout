@@ -4,18 +4,21 @@ import {DexAgSdk} from 'dexag-sdk'
 import Token from './Components/Token'
 import Totals from './Components/Totals'
 import Status from './Components/Status'
+import Amount from './Components/Amount'
 
-var sdk = new DexAgSdk()
+const sdk = new DexAgSdk()
+const orderModel = {
+	metadata: {
+		source: {}
+	}
+}
 
 class App extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			order: {
-				  metadata: {
-					  source: {}
-				  }
-			  }
+			order: orderModel,
+			amount: 1
 		}
 	}
 	componentDidMount(){
@@ -26,28 +29,45 @@ class App extends Component {
 		this.findTrades()
 	}
 	findTrades = async() =>{
-		sdk.getBest({to: 'DAI', from: 'ETH', amount: 159}).then(async(result)=>{
+		let {amount} = this.state;
+		this.setState({order: orderModel})
+		sdk.getBest({to: 'DAI', from: 'ETH', amount: amount}).then(async(result)=>{
 			console.log(result)
 			this.setState({order: result})
 		})
 	}
+	changeAmount = (amount) => {
+		this.setState({amount: amount})
+		if(this.timeout) clearTimeout(this.timeout);
+	    this.timeout = setTimeout(() => {
+	      this.findTrades()
+	  }, 1000);
+	}
+	trade = async() =>{
+		let {order} = this.state;
+		const valid = await sdk.validateWeb3(order);
+		if (valid) {
+			sdk.tradeOrder({tx: order});
+		}
+	}
 	render() {
 		let {source} = this.state.order.metadata;
+		let {status, amount} = this.state;
 		return (
 			<div className="app">
 				<div className="info">
-					<h3>Trade at the best price, with a few lines of code</h3>
+					<h3>Trade at the best price with a few lines of code</h3>
 					<a href="">Learn more about the DEX.AG SDK</a>
 				</div>
 				<div className="container">
 					<div className="title">
-						<p>Buy</p> <Token type="to" findTrades={this.findTrades}/>
-						<p>With</p> <Token type="from" findTrades={this.findTrades}/>
+						<p>Input:</p> <Token type="to" findTrades={this.findTrades}/>
+						<p>Output:</p> <Token type="from" findTrades={this.findTrades}/>
 					</div>
-					<div className="amount"><input value="1" /> DAI</div>
-					<Totals source={source}/>
-					<button onClick={()=>sdk.validateWeb3(this.state.order)}>Buy</button>
-					<Status status={this.state.status} />
+					<Amount changeAmount={this.changeAmount} />
+					<Totals source={source} amount={amount}/>
+					<button onClick={()=>this.trade()}>Buy</button>
+					<Status status={status} />
 				</div>
 			</div>
 		);

@@ -23,9 +23,8 @@ export default class Totals extends React.Component {
 			 <div className="price-total">
 			 	{!priceExists&&'Finding best price..'}
 				{priceExists&&<div>
-				 	Price: {price>1?price.toFixed(2):price.toPrecision(2)} DAI
-					<strong>from</strong>
-					<span>{this.cleanDex(dex)}</span>
+				 	Price: {price>1?price.toFixed(2):price.toPrecision(2)} ETH
+					- <span>{this.cleanDex(dex)}</span>
 				</div>}
 			 </div>
 		 </div>
