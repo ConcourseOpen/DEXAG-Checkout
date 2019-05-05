@@ -8,23 +8,26 @@ export default class Totals extends React.Component {
 	}
     componentDidMount() {
     }
-	cleanDex(dex){
+	cleanDex = (dex) => {
+		// format text in UI
 		if(dex!=undefined) return dex.replace(/-/g,' ').toLowerCase()
 		return dex
+	}
+	formatPrice = (price) => {
+		// handle large and small values
+		return price>1?price.toFixed(2):price.toPrecision(2)
 	}
 	render() {
 		let {price, dex} = this.props.source;
 		let priceExists = price!=undefined;
-		if(priceExists){
-		  price = parseFloat(price)
-		}
+		if(priceExists) price = parseFloat(price)
 		return (
 		  <div className="price">
 			 <div className="price-total">
 			 	{!priceExists&&'Finding best price..'}
-				{priceExists&&<div>
-				 	Price: {price>1?price.toFixed(2):price.toPrecision(2)} ETH
-					- <span>{this.cleanDex(dex)}</span>
+				{priceExists&&<div className="price-details">
+				 	Price: {this.formatPrice(price)} ETH - Total: {this.formatPrice(price*this.props.amount)} ETH
+					<span>DEX: {this.cleanDex(dex)}</span>
 				</div>}
 			 </div>
 		 </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {DexAgSdk} from 'dexag-sdk'
 
+// Components
 import Token from './Components/Token'
 import Totals from './Components/Totals'
 import Status from './Components/Status'
@@ -22,22 +23,29 @@ class App extends Component {
 		}
 	}
 	componentDidMount(){
+		// register dexag callback for status messages
 		sdk.registerStatusHandler((status, data)=>{
-		  console.log(status)
 		  this.setState({web3Status: {status, data}})
+		  console.log(status)
 		});
+		// find the price for default pair
 		this.findTrades()
 	}
 	findTrades = async() =>{
 		let {amount} = this.state;
+		// reset order in UI
 		this.setState({order: orderModel})
+		// get the best price for the pair and amount
 		sdk.getBest({to: 'DAI', from: 'ETH', amount: amount}).then(async(result)=>{
-			console.log(result)
+			// update UI
 			this.setState({order: result})
+			console.log(result)
 		})
 	}
 	changeAmount = (amount) => {
 		this.setState({amount: amount})
+		this.setState({order: orderModel})
+		// wait for user to stop typing
 		if(this.timeout) clearTimeout(this.timeout);
 	    this.timeout = setTimeout(() => {
 	      this.findTrades()
@@ -45,14 +53,16 @@ class App extends Component {
 	}
 	trade = async() =>{
 		let {order} = this.state;
+		// start web3 validation process
 		const valid = await sdk.validateWeb3(order);
 		if (valid) {
+			// web3 is valid, trade order
 			sdk.tradeOrder({tx: order});
 		}
 	}
 	render() {
 		let {source} = this.state.order.metadata;
-		let {web3Status, amount} = this.state;
+		let {order, web3Status, amount} = this.state;
 		return (
 			<div className="app">
 				<div className="info">
@@ -66,7 +76,7 @@ class App extends Component {
 					</div>
 					<Amount changeAmount={this.changeAmount} />
 					<Totals source={source} amount={amount}/>
-					<button onClick={()=>this.trade()}>Buy</button>
+					<button onClick={()=>this.trade()} disabled={order==orderModel}>Buy</button>
 					<Status web3Status={web3Status} />
 				</div>
 			</div>

@@ -46,7 +46,8 @@ body {
 }
 .container .price-total span{
 	text-transform: capitalize;
-	display: inline-block;
+	display: block;
+	margin-top: 10px;
 }
 .container button{
 	background: #5cab00;
@@ -55,6 +56,11 @@ body {
 	padding: 0.5em 2em;
 	font-size: 14px;
 	cursor: pointer;
+	user-select: none;
+}
+.container button:disabled {
+    background: #5cab008a;
+	cursor: text;
 }
 .container select{
 	background: transparent;

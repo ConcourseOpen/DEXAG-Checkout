@@ -14,7 +14,7 @@ export default class Status extends React.Component {
 	}
 	render() {
 		let {web3Status} = this.props;
-		if(!web3Status) web3Status = {}
+		if(!web3Status) web3Status = {} // default state
 		let{status, data} = web3Status;
 		return (
 		<div className="status-message">
