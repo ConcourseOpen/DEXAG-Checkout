@@ -22,9 +22,9 @@ class App extends Component {
 		}
 	}
 	componentDidMount(){
-		sdk.registerStatusHandler((status)=>{
+		sdk.registerStatusHandler((status, data)=>{
 		  console.log(status)
-		  this.setState({status})
+		  this.setState({web3Status: {status, data}})
 		});
 		this.findTrades()
 	}
@@ -52,7 +52,7 @@ class App extends Component {
 	}
 	render() {
 		let {source} = this.state.order.metadata;
-		let {status, amount} = this.state;
+		let {web3Status, amount} = this.state;
 		return (
 			<div className="app">
 				<div className="info">
@@ -67,7 +67,7 @@ class App extends Component {
 					<Amount changeAmount={this.changeAmount} />
 					<Totals source={source} amount={amount}/>
 					<button onClick={()=>this.trade()}>Buy</button>
-					<Status status={status} />
+					<Status web3Status={web3Status} />
 				</div>
 			</div>
 		);

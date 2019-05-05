@@ -9,11 +9,28 @@ export default class Status extends React.Component {
     }
     componentDidMount() {
     }
+	etherScan = (data) =>{
+		return <a href={`https://etherscan.io/tx/${data}`} target="_blank">{data.substring(0,8)}</a>;
+	}
 	render() {
-		let {status} = this.props;
+		let {web3Status} = this.props;
+		if(!web3Status) web3Status = {}
+		let{status, data} = web3Status;
 		return (
 		<div className="status-message">
-			{status=='init'&&<h3>Preparing the trade…</h3>}
+			{web3Status&&<div>
+				{status=='init'&&<h3>Preparing the trade…</h3>}
+				{status=='web3_undefined'&&<h3>Enable your wallet and reload the page</h3>}
+				{status=='network'&&<h3>Switch to main Ethereum network</h3>}
+				{status=='balance'&&<h3>Your balance is insufficient</h3>}
+				{status=='rejected'&&<h3>Trade rejected</h3>}
+				{status=='request_wrap'&&<h3>Wrap ETH to fill the trade</h3>}
+				{status=='allowance'&&<h3>Unlock the token to continue</h3>}
+				{status=='failed'&&<h3>Trade failed - {this.etherScan(data)}</h3>}
+				{status=='bancor_notice'&&<h3><strong>Bancor Notice:</strong> Changing the gas price will result in a failed transaction</h3>}
+				{(status=='send_trade'||status=='send_wrap')&&<h3>Waiting to be mined - {this.etherScan(data)}</h3>}
+				{(status=='mined_trade'||status=='mined_approve'||status=='mined_wrap')&&<h3>Transaction mined - {this.etherScan(data)}</h3>}
+			</div>}
 		</div>
 		);
 	}

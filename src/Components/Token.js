@@ -11,7 +11,7 @@ export default class Token extends React.Component {
     }
 	render() {
 		let {type} = this.props;
-		let token = type=='to'?'DAI':'ETH';
+		let token = type=='to'?'ETH':'DAI';
 		return (
 		<select defaultValue={token}>
 			<option value={token}>{token}</option>

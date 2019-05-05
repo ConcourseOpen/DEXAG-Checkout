@@ -27,6 +27,12 @@ body {
     font-weight: 400;
     color: rgb(166, 166, 166);
 	margin-bottom: 0;
+	background: #0e1921;
+	padding: 10px;
+	margin-top: 20px;
+}
+.status-message a{
+	color: white;
 }
 .container .price{
     font-weight: 300;
