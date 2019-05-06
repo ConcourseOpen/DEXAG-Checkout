@@ -100,8 +100,8 @@ class App extends Component {
 				</div>
 				<div className="container">
 					<div className="title">
-						<p>Input:</p> <Token type="from" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
-						<p>Output:</p> <Token type="to" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
+						<p>Buy:</p> <Token type="from" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
+						<p>With:</p> <Token type="to" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
 					</div>
 					<Amount changeAmount={this.changeAmount} pair={pair} />
 					<Totals source={source} amount={amount} pair={pair} />
