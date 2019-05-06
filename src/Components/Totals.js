@@ -21,9 +21,8 @@ export default class Totals extends React.Component {
 		let {pair, source} = this.props;
 		let {price, dex} = source;
 		let priceExists = price!=undefined;
-		if(!pair) pair = {}
+		if(!pair) pair = {} // default state
 		if(priceExists) price = parseFloat(price)
-		console.log(pair)
 		return (
 		  <div className="price">
 			 <div className="price-total">

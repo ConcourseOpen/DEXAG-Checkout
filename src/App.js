@@ -30,6 +30,7 @@ class App extends Component {
 		// register dexag callback for status messages
 		sdk.registerStatusHandler((status, data)=>{
 		  this.setState({web3Status: {status, data}})
+		  this.timeoutStatus(status)
 		  console.log(status)
 		});
 		// find the price for default pair
@@ -47,6 +48,9 @@ class App extends Component {
 		})
 	}
 	changeAmount = (amount) => {
+		// amount isnt a real number
+		if(!(amount>0)) return;
+		// update amount
 		this.setState({amount: amount})
 		// reset order in UI
 		this.setState({order: orderModel})
@@ -55,15 +59,6 @@ class App extends Component {
 	    this.timeout = setTimeout(() => {
 	      this.findTrades()
 	  }, 1000);
-	}
-	trade = async() =>{
-		let {order} = this.state;
-		// start web3 validation process
-		const valid = await sdk.validateWeb3(order);
-		if (valid) {
-			// web3 is valid, trade order
-			sdk.tradeOrder({tx: order});
-		}
 	}
 	changeToken = (type, token) =>{
 		var pair = this.state.pair;
@@ -74,6 +69,22 @@ class App extends Component {
 		this.setState({pair: pair},()=>{
 			this.findTrades()
 		})
+	}
+	trade = async() =>{
+		let {order} = this.state;
+		// start web3 validation process
+		const valid = await sdk.validateWeb3(order);
+		if (valid) {
+			// web3 is valid, trade order
+			sdk.tradeOrder({tx: order});
+		}
+	}
+	closeStatus = () => {
+		this.setState({web3Status: {}})
+	}
+	timeoutStatus = (status) => {
+		// hide rejected message
+		if(status=='rejected') setTimeout(()=>{this.closeStatus()},3500)
 	}
 	render() {
 		let {source} = this.state.order.metadata;
@@ -92,7 +103,7 @@ class App extends Component {
 					<Amount changeAmount={this.changeAmount} pair={pair} />
 					<Totals source={source} amount={amount} pair={pair} />
 					<button onClick={()=>this.trade()} disabled={order==orderModel}>Buy</button>
-					<Status web3Status={web3Status} />
+					<Status web3Status={web3Status} closeStatus={this.closeStatus}/>
 				</div>
 			</div>
 		);

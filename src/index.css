@@ -22,14 +22,27 @@ body {
 	display: inline-block;
 	margin: 0 15px;
 }
-.status-message h3{
+.status-message div{
 	font-size: 14px;
     font-weight: 400;
     color: rgb(166, 166, 166);
 	margin-bottom: 0;
 	background: #0e1921;
-	padding: 10px;
+	padding: 13px 10px;
 	margin-top: 20px;
+}
+.status-message h3{
+	font-size: 15px;
+	font-weight: 500;
+	margin-bottom: 10px;
+	margin-top: 0;
+}
+.status-message h2{
+	margin: 0;
+	font-size: 13px;
+	font-weight: 400;
+	user-select: none;
+	cursor: pointer;
 }
 .status-message a{
 	color: white;
@@ -69,6 +82,11 @@ body {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+	cursor: pointer;
+	border-radius: 2px;
+}
+.container select option{
+	color: black;
 }
 .container .amount{
 	font-size: 14px;
