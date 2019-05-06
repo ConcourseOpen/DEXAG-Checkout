@@ -19,7 +19,11 @@ class App extends Component {
 		super(props);
 		this.state = {
 			order: orderModel,
-			amount: 1
+			amount: 1,
+			pair: {
+				to: 'DAI',
+				from: 'ETH'
+			}
 		}
 	}
 	componentDidMount(){
@@ -32,11 +36,11 @@ class App extends Component {
 		this.findTrades()
 	}
 	findTrades = async() =>{
-		let {amount} = this.state;
+		let {amount, pair} = this.state;
 		// reset order in UI
 		this.setState({order: orderModel})
 		// get the best price for the pair and amount
-		sdk.getBest({to: 'DAI', from: 'ETH', amount: amount}).then(async(result)=>{
+		sdk.getBest({to: pair.to, from: pair.from, amount: amount}).then(async(result)=>{
 			// update UI
 			this.setState({order: result})
 			console.log(result)
@@ -44,6 +48,7 @@ class App extends Component {
 	}
 	changeAmount = (amount) => {
 		this.setState({amount: amount})
+		// reset order in UI
 		this.setState({order: orderModel})
 		// wait for user to stop typing
 		if(this.timeout) clearTimeout(this.timeout);
@@ -60,9 +65,19 @@ class App extends Component {
 			sdk.tradeOrder({tx: order});
 		}
 	}
+	changeToken = (type, token) =>{
+		var pair = this.state.pair;
+		// reset order in UI
+		this.setState({order: orderModel})
+		// change the token pair
+		pair[type] = token;
+		this.setState({pair: pair},()=>{
+			this.findTrades()
+		})
+	}
 	render() {
 		let {source} = this.state.order.metadata;
-		let {order, web3Status, amount} = this.state;
+		let {order, pair, web3Status, amount} = this.state;
 		return (
 			<div className="app">
 				<div className="info">
@@ -71,11 +86,11 @@ class App extends Component {
 				</div>
 				<div className="container">
 					<div className="title">
-						<p>Input:</p> <Token type="to" findTrades={this.findTrades}/>
-						<p>Output:</p> <Token type="from" findTrades={this.findTrades}/>
+						<p>Input:</p> <Token type="from" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
+						<p>Output:</p> <Token type="to" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
 					</div>
-					<Amount changeAmount={this.changeAmount} />
-					<Totals source={source} amount={amount}/>
+					<Amount changeAmount={this.changeAmount} pair={pair} />
+					<Totals source={source} amount={amount} pair={pair} />
 					<button onClick={()=>this.trade()} disabled={order==orderModel}>Buy</button>
 					<Status web3Status={web3Status} />
 				</div>

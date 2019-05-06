@@ -18,15 +18,18 @@ export default class Totals extends React.Component {
 		return price>1?price.toFixed(2):price.toPrecision(2)
 	}
 	render() {
-		let {price, dex} = this.props.source;
+		let {pair, source} = this.props;
+		let {price, dex} = source;
 		let priceExists = price!=undefined;
+		if(!pair) pair = {}
 		if(priceExists) price = parseFloat(price)
+		console.log(pair)
 		return (
 		  <div className="price">
 			 <div className="price-total">
 			 	{!priceExists&&'Finding best price..'}
 				{priceExists&&<div className="price-details">
-				 	Price: {this.formatPrice(price)} ETH - Total: {this.formatPrice(price*this.props.amount)} ETH
+				 	Price: {this.formatPrice(price)} {pair.from} - Total: {this.formatPrice(price*this.props.amount)} {pair.from}
 					<span>DEX: {this.cleanDex(dex)}</span>
 				</div>}
 			 </div>
