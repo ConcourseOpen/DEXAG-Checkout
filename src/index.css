@@ -37,12 +37,21 @@ body {
 	margin-bottom: 10px;
 	margin-top: 0;
 }
+.status-message h3 img{
+	width: 15px;
+	margin-right: 10px;
+	margin-bottom: -2px;
+}
 .status-message h2{
-	margin: 0;
+	margin: auto;
 	font-size: 13px;
 	font-weight: 400;
 	user-select: none;
 	cursor: pointer;
+	width: fit-content;
+}
+.status-message h2:hover{
+    color: white;
 }
 .status-message a{
 	color: white;
