@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {DexAgSdk} from 'dexag-sdk'
+import {DEXAG} from 'dexag-sdk'
 
 // Components
 import Token from './Components/Token'
@@ -7,7 +7,7 @@ import Totals from './Components/Totals'
 import Status from './Components/Status'
 import Amount from './Components/Amount'
 
-const sdk = new DexAgSdk()
+const sdk = new DEXAG()
 const orderModel = {
 	metadata: {
 		source: {}
@@ -99,9 +99,9 @@ class App extends Component {
 					<a href="">Learn more about the DEX.AG SDK</a>
 				</div>
 				<div className="container">
-					<div className="title">
-						<p>Buy:</p> <Token type="from" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
-						<p>With:</p> <Token type="to" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
+					<div className="title">						
+						<p>Buy:</p> <Token type="to" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
+						<p>With:</p> <Token type="from" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
 					</div>
 					<Amount changeAmount={this.changeAmount} pair={pair} />
 					<Totals source={source} amount={amount} pair={pair} />
