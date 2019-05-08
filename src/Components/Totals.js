@@ -28,7 +28,7 @@ export default class Totals extends React.Component {
 			 <div className="price-total">
 			 	{!priceExists&&'Finding best price..'}
 				{priceExists&&<div className="price-details">
-				 	Price: {this.formatPrice(price)} {pair.from} - Total: {this.formatPrice(price*this.props.amount)} {pair.from}
+				 	Best Price: {this.formatPrice(price)} {pair.from} - Total: {this.formatPrice(price*this.props.amount)} {pair.from}
 					<span>DEX: {this.cleanDex(dex)}</span>
 				</div>}
 			 </div>
