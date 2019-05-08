@@ -23,10 +23,10 @@ const sdk = new DEXAG();
 const trade = await sdk.getBest({to: 'DAI', from: 'ETH', amount: 1})
 
 // checkout
-const valid = await sdk.validateWeb3(order);
+const valid = await sdk.validateWeb3(trade);
 if (valid) {
 	// web3 is valid, trade order
-	sdk.tradeOrder({tx: order}); /** Metamask opens **/
+	sdk.tradeOrder({tx: trade}); /** Metamask opens **/
 }
 
 ```
