@@ -99,7 +99,7 @@ class App extends Component {
 					<a href="">Learn more about the DEX.AG SDK</a>
 				</div>
 				<div className="container">
-					<div className="title">						
+					<div className="title">
 						<p>Buy:</p> <Token type="to" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
 						<p>With:</p> <Token type="from" pair={pair} findTrades={this.findTrades} changeToken={this.changeToken}/>
 					</div>
