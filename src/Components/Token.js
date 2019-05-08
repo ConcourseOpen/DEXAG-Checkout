@@ -7,8 +7,8 @@ export default class Token extends React.Component {
 
 		};
 	}
-    componentDidMount() {
-    }
+	componentDidMount() {
+	}
 	render() {
 		let {type, changeToken} = this.props;
 		let token = type=='to'?'DAI':'ETH';
@@ -25,4 +25,4 @@ export default class Token extends React.Component {
 		</select>
 		);
 	}
-  }
+}

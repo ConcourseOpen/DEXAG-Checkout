@@ -1,14 +1,14 @@
 import React from 'react';
 
 export default class Status extends React.Component {
-    constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {
 
 		};
-    }
-    componentDidMount() {
-    }
+	}
+	componentDidMount() {
+	}
 	etherScan = (data) =>{
 		return <a href={`https://etherscan.io/tx/${data}`} target="_blank">{data.substring(0,8)}</a>;
 	}
@@ -36,4 +36,4 @@ export default class Status extends React.Component {
 		</div>
 		);
 	}
-  }
+}

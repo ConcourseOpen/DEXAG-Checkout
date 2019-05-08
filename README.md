@@ -1,5 +1,5 @@
 ## Documentation
-See the [DEXAG Docs](https://docs.dex.ag).  
+See the [DEXAG Docs](https://docs.dex.ag)  
 View the app running live [DEXAG Checkout](https://checkout.dex.ag)
 
 ## Installation

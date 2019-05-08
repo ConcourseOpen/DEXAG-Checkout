@@ -1,14 +1,14 @@
 import React from 'react';
 
 export default class Amount extends React.Component {
-    constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {
 
 		};
-    }
-    componentDidMount() {
-    }
+	}
+	componentDidMount() {
+	}
 	render() {
 		let {changeAmount, pair} = this.props;
 		if(pair==undefined) pair = {}
@@ -18,4 +18,4 @@ export default class Amount extends React.Component {
 		</div>
 		);
 	}
-  }
+}

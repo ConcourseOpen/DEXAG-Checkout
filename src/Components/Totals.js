@@ -6,8 +6,8 @@ export default class Totals extends React.Component {
 		this.state = {
 		};
 	}
-    componentDidMount() {
-    }
+	componentDidMount() {
+	}
 	cleanDex = (dex) => {
 		// format text in UI
 		if(dex!=undefined) return dex.replace(/-/g,' ').toLowerCase()
@@ -35,4 +35,4 @@ export default class Totals extends React.Component {
 		 </div>
 		);
 	}
-  }
+}
