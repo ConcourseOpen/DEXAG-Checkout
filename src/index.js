@@ -9,7 +9,7 @@ import './index.css';
 
 ReactDOM.render(
 <div>
-    <div>
-    	<App />
-    </div>
+  <div>
+    <App />
+  </div>
 </div>, document.getElementById('root'));
