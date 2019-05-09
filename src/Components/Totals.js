@@ -26,11 +26,11 @@ export default class Totals extends React.Component {
     return (
       <div className="price">
         <div className="price-total">
-        {!priceExists&&'Finding best price..'}
-        {priceExists&&<div className="price-details">
-          Best Price: {this.formatPrice(price)} {pair.from} - Total: {this.formatPrice(price*this.props.amount)} {pair.from}
-          <span>DEX: {this.cleanDex(dex)}</span>
-        </div>}
+          {!priceExists&&'Finding best price..'}
+          {priceExists&&<div className="price-details">
+            Best Price: {this.formatPrice(price)} {pair.from} - Total: {this.formatPrice(price*this.props.amount)} {pair.from}
+            <span>DEX: {this.cleanDex(dex)}</span>
+          </div>}
         </div>
       </div>
     );
