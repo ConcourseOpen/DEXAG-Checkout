@@ -154,6 +154,13 @@ body {
   margin-top: 30px;
 }
 
+.github-link{
+  text-align: center;
+  display: block;
+  color: grey;
+  font-size: 15px;
+}
+
 @media(max-width:500px) {
   .container {
     box-sizing: border-box;
