@@ -90,7 +90,7 @@ class App extends Component {
     return (
       <div className="app">
         <div className="info">
-          <a href="https://dex.ag">
+          <a href="https://dex.ag" target="_blank">
             <img src="/logo.svg" />
           </a>
           <h3>Trade at the best price with a few lines of code</h3>
@@ -106,7 +106,7 @@ class App extends Component {
           <button onClick={()=>this.trade()} disabled={order==orderModel}>Buy</button>
           <Status web3Status={web3Status} closeStatus={this.closeStatus}/>
         </div>
-        <a href="https://github.com/SettleFinance/DEXAG-Checkout" target="_blank" className="github-link">Fork me on Github</a>
+        <a href="https://github.com/SettleFinance/DEXAG-Checkout" target="_blank" className="standalone-link">Fork me on Github</a>
       </div>
     );
   }
