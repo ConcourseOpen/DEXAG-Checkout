@@ -25,7 +25,7 @@ sdk.registerStatusHandler((status, data)=>{
 });
 
 // get trade
-const trade = await sdk.getBest({to: 'DAI', from: 'ETH', amount: 1})
+const trade = await sdk.getTrade({to: 'DAI', from: 'ETH', amount: 1})
 
 // checkout
 const valid = await sdk.validateWeb3(trade);
