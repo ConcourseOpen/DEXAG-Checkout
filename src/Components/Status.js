@@ -26,6 +26,7 @@ export default class Status extends React.Component {
           {status=='request_wrap'&&<h3>Wrap ETH to fill the trade</h3>}
           {status=='allowance'&&<h3>Unlock the token to continue</h3>}
           {status=='bad_tx'&&<h3>The Tx is not valid</h3>}
+          {status=='unlock_wallet'&&<h3>Unlock your web3 wallet</h3>}
           {status=='failed'&&<h3>Trade failed - {this.etherScan(data)}</h3>}
           {status=='bancor_notice'&&<h3><strong>Bancor Notice:</strong> Changing the gas price will result in a failed transaction</h3>}
           {(status=='send_trade'||status=='send_wrap')&&<h3>Waiting to be mined - {this.etherScan(data)}</h3>}
