@@ -33,7 +33,6 @@ if (valid) {
   // web3 is valid, trade order
   sdk.tradeOrder({tx: trade}); /** Metamask opens **/
 }
-
 ```
 
 ## More information
