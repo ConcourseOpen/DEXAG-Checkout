@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {DEXAG} from 'dexag-sdk'
+import DEXAG from 'dexag-sdk';
 
 // Components
 import Token from './Components/Token'
@@ -7,7 +7,7 @@ import Totals from './Components/Totals'
 import Status from './Components/Status'
 import Amount from './Components/Amount'
 
-const sdk = new DEXAG()
+const sdk = DEXAG.fromProvider(window.ethereum || window.web3);
 const orderModel = {
   metadata: {
     source: {}
@@ -41,7 +41,7 @@ class App extends Component {
     // reset order in UI
     this.setState({order: orderModel})
     // get the best price for the pair and amount
-    let trade = await sdk.getTrade({to: pair.to, from: pair.from, amount: amount})
+    let trade = await sdk.getTrade({to: pair.to, from: pair.from, toAmount: amount, dex: 'best'})
     this.setState({order: trade})
     console.log(trade)
   }
@@ -71,10 +71,10 @@ class App extends Component {
   trade = async() =>{
     let {order} = this.state;
     // start web3 validation process
-    const valid = await sdk.validateWeb3(order);
+    const valid = await sdk.validate(order);
     if (valid) {
       // web3 is valid, trade order
-      sdk.tradeOrder({tx: order});
+      sdk.trade(order);
     }
   }
   closeStatus = () => {
