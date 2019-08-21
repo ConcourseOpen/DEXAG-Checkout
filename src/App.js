@@ -8,6 +8,7 @@ import Status from './Components/Status'
 import Amount from './Components/Amount'
 
 const sdk = DEXAG.fromProvider(window.ethereum || window.web3);
+
 const orderModel = {
   metadata: {
     source: {}
@@ -41,7 +42,7 @@ class App extends Component {
     // reset order in UI
     this.setState({order: orderModel})
     // get the best price for the pair and amount
-    let trade = await sdk.getTrade({to: pair.to, from: pair.from, toAmount: amount, dex: 'best'})
+    let trade = await sdk.getTrade({to: pair.to, from: pair.from, toAmount: amount, dex: 'best', proxy: '0xD3BeD3A8E3e6b24b740EAD108bA776e0Ad298588'})
     this.setState({order: trade})
     console.log(trade)
   }
