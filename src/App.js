@@ -42,7 +42,7 @@ class App extends Component {
     // reset order in UI
     this.setState({order: orderModel})
     // get the best price for the pair and amount
-    let trade = await sdk.getTrade({to: pair.to, from: pair.from, toAmount: amount, dex: 'best', proxy: '0xD3BeD3A8E3e6b24b740EAD108bA776e0Ad298588'})
+    let trade = await sdk.getTrade({to: pair.to, from: pair.from, toAmount: amount, dex: 'best'})
     this.setState({order: trade})
     console.log(trade)
   }
